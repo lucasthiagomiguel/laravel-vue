@@ -14,17 +14,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return  Users::all();
     }
 
     /**
@@ -35,7 +25,9 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $user =  Users::create($request->all());
+
+        return $user;
     }
 
     /**
@@ -44,9 +36,9 @@ class UsersController extends Controller
      * @param  \App\Models\Users  $users
      * @return \Illuminate\Http\Response
      */
-    public function show(Users $users)
+    public function show(Users $user)
     {
-        //
+        return $user;
     }
 
     /**
@@ -55,7 +47,7 @@ class UsersController extends Controller
      * @param  \App\Models\Users  $users
      * @return \Illuminate\Http\Response
      */
-    public function edit(Users $users)
+    public function edit(Users $user)
     {
         //
     }
@@ -67,7 +59,7 @@ class UsersController extends Controller
      * @param  \App\Models\Users  $users
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Users $users)
+    public function update(Request $request, Users $user)
     {
         //
     }
@@ -78,7 +70,7 @@ class UsersController extends Controller
      * @param  \App\Models\Users  $users
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Users $users)
+    public function destroy(Users $user)
     {
         //
     }
