@@ -31,10 +31,9 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-       
         $request->validate($this->task->rules(),$this->task->feedback());
         $task = $this->task->create([
-            'user_id' => $request->user_id,
+            'users_id' => $request->users_id,
             'name' => $request->name,
             'date_conclusion' => $request->date_conclusion,
             'status' => $request->status

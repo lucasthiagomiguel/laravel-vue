@@ -24,4 +24,8 @@ class Users extends Model
             'email.unique' => ' email exist'
         ];
     }
+
+    public function tasks(){
+        return $this->hasMany('App\Models\Task');
+    }
 }

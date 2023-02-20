@@ -45,7 +45,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $users = $this->users->find($id);
+        $users = $this->users->with('tasks')->find($id);
         if($users === null){
             return response()->json(['error' => 'Not exist'],404); 
             
