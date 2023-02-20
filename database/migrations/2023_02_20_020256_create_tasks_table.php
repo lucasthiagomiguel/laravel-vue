@@ -22,6 +22,7 @@ return new class extends Migration
 
              //foreign key (constraints)
             $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamps();
         });
     }
 
