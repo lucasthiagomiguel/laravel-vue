@@ -14,7 +14,7 @@ class Task extends Model
         return 
         [ 
             'users_id' => 'exists:users,id',
-            'name' => 'required|unique:task,name,'.$this->id.'',
+            'name' => 'required|unique:tasks,name,'.$this->id.'',//unique task name
             'date_conclusion' => 'required',
             'status' => 'required|boolean'
         ];

@@ -90,7 +90,9 @@ class UsersController extends Controller
     public function destroy(Request $request, $id)
     {
         $users = $this->users->find($id);
-        $users->update($request->all());
+        $users->update([
+            'status' => 0
+        ]);
         return $users;
     }
 }

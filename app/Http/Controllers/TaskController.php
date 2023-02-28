@@ -20,7 +20,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $task = $this->task->all();
+        $task = $this->task->all()->where('status','=', 1);
+        //dd($task);
         return  response()->json($task,200); 
     }
     /**
@@ -36,7 +37,7 @@ class TaskController extends Controller
             'users_id' => $request->users_id,
             'name' => $request->name,
             'date_conclusion' => $request->date_conclusion,
-            'status' => $request->status
+            'status' => 1
         ]);
         return response()->json($task,201); 
     }
@@ -89,12 +90,19 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Task  $task
+     * @param  Integer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy($id)
     {
-        //
+        $task = $this->task->find($id);
+        if($task === null){
+            return response()->json(['error' => 'Task not exist'],404);
+        }
+        $task->update([
+            'status' => 0
+        ]);
+        return response()->json(['status' => 'successfully deleted'],200); 
     }
 }
 
