@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
+use App\Mail\SendEmailUsers;
+use Illuminate\Support\Facades\Mail;
 
 class TaskController extends Controller
 {
@@ -39,6 +41,8 @@ class TaskController extends Controller
             'date_conclusion' => $request->date_conclusion,
             'status' => 1
         ]);
+        // $email = auth()->user()->email;
+        Mail::to("lsouzapuma@gmail.com")->send(new SendEmailUsers());
         return response()->json($task,201); 
     }
 
