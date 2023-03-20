@@ -14,23 +14,22 @@ class AuthController extends Controller
 
         } else { //erro de usuário ou senha
             return response()->json(['erro' => 'failed data!'], 403);
-
-            //401 = Unauthorized -> não autorizado
-            //403 = forbidden -> proibido (login inválido)
         }          
         return 'teste';
     }
 
     public function logout(){
-
+        auth('api')->logout();
+        return response()->json(['msg' => 'logout done successfully']);
     }
 
     public function refresh(){
-
+        $tokne = auth('api')->refresh();
+        return response()->json($tokne);
     }
 
     public function me(){
-
+        return response()->json(auth()->user());
     }
 
 }

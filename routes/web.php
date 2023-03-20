@@ -15,7 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // return new SendEmailUsers();
-    Mail::to("lsouzapuma@gmail.com")->send(new SendEmailUsers() ) ;
-    return 'teste';  
+    return view('app');
 });

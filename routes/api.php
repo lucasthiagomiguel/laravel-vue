@@ -13,9 +13,15 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::apiResource('users',UsersController::class);
-Route::apiResource('task',TaskController::class);
-Route::post('login','App\Http\Controllers\AuthController@login');
-Route::post('logout','App\Http\Controllers\AuthController@logout');
-Route::post('refresh','App\Http\Controllers\AuthController@refresh');
-Route::post('me','App\Http\Controllers\AuthController@me');
+Route::prefix('v1')->middleware('jwt.auth')->group(function(){
+    Route::apiResource('users',UsersController::class);
+    Route::apiResource('task',TaskController::class);
+    Route::post('me','App\Http\Controllers\AuthController@me');
+    Route::post('refresh','App\Http\Controllers\AuthController@refresh');
+    Route::post('logout','App\Http\Controllers\AuthController@logout');
+});
+
+Route::prefix('v1')->group(function(){
+    Route::post('login','App\Http\Controllers\AuthController@login');
+    
+});
